@@ -1,3 +1,5 @@
+package com.wimdeblauwe.examples.todomvcthymeleaf.todoitem.web;
+
 import javax.validation.constraints.NotBlank;
 
 public class TodoItemFormData {
@@ -12,10 +14,5 @@ public class TodoItemFormData {
     public void setTitle(String title) {
         this.title = title;
         
-    public enum ListFilter {
-    ALL,
-    ACTIVE,
-    COMPLETED
-        }
-    
+  
 }
