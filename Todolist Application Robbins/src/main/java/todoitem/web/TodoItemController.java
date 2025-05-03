@@ -1,12 +1,15 @@
 import com.wimdeblauwe.examples.todomvcthymeleaf.todoitem.TodoItemRepository;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
+import com.wimdeblauwe.examples.todomvcthymeleaf.todoitem.TodoItem;
+import com.wimdeblauwe.examples.todomvcthymeleaf.todoitem.TodoItemNotFoundException;
+import com.wimdeblauwe.examples.todomvcthymeleaf.todoitem.TodoItemRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/")
@@ -20,11 +23,10 @@ public class TodoItemController {
 
     @GetMapping
     public String index(Model model) {
-        model.addAttribute("item", new TodoItemFormData()); 
-        model.addAttribute("totalNumberOfItems", repository.count());
+        addAttributesForIndex(model, ListFilter.ACTIVE);
         return "index";
     }
-
+    
     @PostMapping
     public String addNewTodoItem(@Valid @ModelAttribute("item") TodoItemFormData formData) { 
         repository.save(new TodoItem(formData.getTitle(), false)); 
@@ -80,6 +82,7 @@ public class TodoItemController {
         model.addAttribute("todos", getTodoItems(listFilter)); 
         model.addAttribute("totalNumberOfItems", repository.count());
         model.addAttribute("numberOfActiveItems", getNumberOfActiveItems());
+        model.addAttribute("numberOfCompletedItems", getNumberOfCompletedItems());
     }
     private List<TodoItemDto> getTodoItems(ListFilter filter) {
         return switch (filter) { 
@@ -126,5 +129,22 @@ public String toggleAll() {
         repository.save(todoItem);
     }
     return "redirect:/";
+}
+     private int getNumberOfActiveItems() {
+        return repository.countAllByCompleted(false);
+    }
+
+    private int getNumberOfCompletedItems() {
+        return repository.countAllByCompleted(true);
+    }
+
+    public static record TodoItemDto(long id, String title, boolean completed) {
+    }
+
+    public enum ListFilter {
+        ALL,
+        ACTIVE,
+        COMPLETED
+    }
 }
 }
