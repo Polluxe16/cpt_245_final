@@ -1,3 +1,5 @@
+//This file accounts for the NOT_FOUND error
+
 package com.wimdeblauwe.examples.todomvcthymeleaf.todoitem;
 
 import org.springframework.http.HttpStatus;
