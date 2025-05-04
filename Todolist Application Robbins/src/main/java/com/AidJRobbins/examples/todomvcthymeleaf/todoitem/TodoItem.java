@@ -1,7 +1,12 @@
-import java.lang.annotation.Inherited;
+package com.AidJRobbins.examples.todomvcthymeleaf.todoitem;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 
 @Entity
-public class Todoitem {
+public class TodoItem {
     @Id
     @GeneratedValue
     private Long id;
@@ -11,8 +16,33 @@ public class Todoitem {
 
     private boolean completed;
 
-    private int getNumberOfActiveItems() {
-        return repository.countAllByCompleted(false);
+    protected TodoItem() {
+
     }
 
+    public TodoItem(String title,
+                    boolean completed) {
+        this.title = title;
+        this.completed = completed;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
 }
