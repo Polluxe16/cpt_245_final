@@ -1,4 +1,4 @@
-package com.AidJRobbins.examples.todomvcthymeleaf.todoitem;
+package com.wimdeblauwe.examples.todomvcthymeleaf.todoitem;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
