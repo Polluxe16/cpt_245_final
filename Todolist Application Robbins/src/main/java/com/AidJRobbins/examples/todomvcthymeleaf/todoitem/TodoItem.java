@@ -1,3 +1,5 @@
+//This file, along with TodoItemRepository, allows TodoItem entities to be stored in the database
+
 package com.wimdeblauwe.examples.todomvcthymeleaf.todoitem;
 
 import javax.persistence.Entity;
