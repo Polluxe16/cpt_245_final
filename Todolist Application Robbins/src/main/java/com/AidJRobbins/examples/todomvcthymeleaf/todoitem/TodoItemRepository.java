@@ -1,9 +1,13 @@
+package com.wimdeblauwe.examples.todomvcthymeleaf.todoitem;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TodoItemRepository extends JpaRepository<TodoItem, Long> {
-int countAllByCompleted(boolean completed); 
+import java.util.list;
 
-List<TodoItem> findAllByCompleted(boolean completed);
+public interface TodoItemRepository extends JpaRepository<TodoItem, Long> {
+  int countAllByCompleted(boolean completed); 
+
+  List<TodoItem> findAllByCompleted(boolean completed);
 
 
 }
