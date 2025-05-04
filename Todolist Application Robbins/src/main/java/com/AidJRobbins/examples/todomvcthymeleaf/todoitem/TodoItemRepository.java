@@ -1,3 +1,5 @@
+//This file, along with TodoItem, allows Todoitem entities to be stored in a database
+
 package com.wimdeblauwe.examples.todomvcthymeleaf.todoitem;
 
 import org.springframework.data.jpa.repository.JpaRepository;
