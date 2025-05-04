@@ -1,3 +1,5 @@
+//This is the controller for the application, and contains various get, post, put, and delete mappings to complete various tasks
+
 import com.wimdeblauwe.examples.todomvcthymeleaf.todoitem.TodoItemRepository;
 
 import com.wimdeblauwe.examples.todomvcthymeleaf.todoitem.TodoItem;
